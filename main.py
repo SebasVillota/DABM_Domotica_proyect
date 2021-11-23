@@ -246,7 +246,7 @@ def Menu_principal():
     print("3. Registro de usuarios".center(50," "))
     print("4. Emociones".center(50," "))
     print("5. Salir".center(50," "))
-    espera_asistente_menu()
+    espera_asistente_menu() 
     talk("Que opción desea ingresar")
     a= listen()
     if('1' in a):
