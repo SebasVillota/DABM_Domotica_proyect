@@ -9,6 +9,8 @@ from recursos.funciones import *
 import matplotlib.pyplot as plt
 from clases.conf_objetos import *
 from clases.datos import *
+import threading
+from recursos.reconocimiento_emociones.reconocimiento_facial import *
 
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
@@ -394,8 +396,12 @@ def run():
     print("No habla")
     run()
 
+def registro_rostro():
+    reconocimiento_Emociones()
 
 if __name__ == "__main__":
-    
+    rostro = threading.Thread(target=registro_rostro, name="registro_rostro")
+    rostro.start()
     run()
+    
     

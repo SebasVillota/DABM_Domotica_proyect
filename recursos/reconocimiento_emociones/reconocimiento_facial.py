@@ -66,7 +66,7 @@ def reconocimiento_Emociones():
                 if result[1] < 500:
                     cv2.putText(frame,'{}'.format(imagePaths[result[0]]),(x,y-25),2,1.1,(0,255,0),1,cv2.LINE_AA)
                     cv2.rectangle(frame, (x,y),(x+w,y+h),(0,255,0),2)
-                    print(format(imagePaths[result[0]]))
+                    #print(format(imagePaths[result[0]]))
                 else:
                     cv2.putText(frame,'Desonocido',(x,y-20),2,0.8,(0,0,255),1,cv2.LINE_AA)
                     cv2.rectangle(frame, (x,y),(x+w,y+h),(0,255,0),2)
@@ -75,7 +75,7 @@ def reconocimiento_Emociones():
                 if result[1] < 70:
                     cv2.putText(frame,'{}'.format(imagePaths[result[0]]),(x,y-25),2,1.1,(0,255,0),1,cv2.LINE_AA)
                     cv2.rectangle(frame, (x,y),(x+w,y+h),(0,255,0),2)
-                    print(format(imagePaths[result[0]]))
+                    #print(format(imagePaths[result[0]]))
                     emocion = format(imagePaths[result[0]])
                     tiempoPrograma = time.time()-inicio
                     tiempototal = tiempototal + tiempoPrograma
@@ -110,7 +110,7 @@ def reconocimiento_Emociones():
                         for l in datos:
                             archivo.write(l)
                         archivo.close()
-                        print(tiempoPrograma)                    
+                        #print(tiempoPrograma)                    
                         tiempototal = 0
                         tiempo_feli = 0
                         tiempo_sad = 0
@@ -132,4 +132,4 @@ def reconocimiento_Emociones():
     cap.release()
     cv2.destroyAllWindows()
 
-reconocimiento_Emociones()
+#reconocimiento_Emociones()
