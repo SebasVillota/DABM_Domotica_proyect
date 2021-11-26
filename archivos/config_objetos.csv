@@ -1,8 +1,8 @@
 Objeto;Estado
 luz cuarto;ON
-luz cocina;OFF
+luz cocina;ON
 luz sala;ON
-luz baño;OFF
+luz baño;ON
 puerta;ON
-ventilador;OFF
-seguridad;OFF
+ventilador;ON
+seguridad;ON

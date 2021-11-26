@@ -7,6 +7,8 @@ from datetime import datetime
 import time
 from recursos.funciones import *
 import matplotlib.pyplot as plt
+from clases.conf_objetos import *
+from clases.datos import *
 
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
@@ -96,7 +98,66 @@ def listen():
 
 
 def Control_Hogar():
+
+    directorio = os.path.dirname(__file__)
+    nombreArchivo = "archivos/config_objetos.csv"
+    ruta = os.path.join(directorio,nombreArchivo)
+    file = open(ruta,"r",encoding='utf-8')
+    datos = file.readlines()
+    file.close()
+    objetoC=[]
+    state =[]
+    for dato in datos:     
+        objeto, estado_a= dato.split(";")
+        estado_a = estado_a.strip("\n")
+        estado_a = estado_a.strip("\t")
+        state.append(estado_a)
+        objetoC.append(objeto)
+    print(objetoC)
+    print(state)
+
     print("Control de hogar por ARDUINO")
+    talk("Bienvenido al control del hogar, que desea modificar")
+    objeto = listen()
+    if('cuarto' in objeto):
+        talk("Desea prender o apagar la luz del cuarto")
+        option = listen()
+        a = control("cuarto",state[1],option) 
+    elif('cocina' in objeto):
+        talk("Desea prender o apagar la luz de la cocina")
+        option = listen()
+        a = control("cocina",state[2],option)
+    elif('sala' in objeto):
+        talk("Desea prender o apagar la luz de la sala")
+        option = listen()
+        a = control("sala",state[3],option)
+    elif('baño' in objeto):
+        talk("Desea prender o apagar la luz del baño")
+        option = listen()
+        a = control("baño",state[4],option)
+    elif('puerta' in objeto):
+        talk("Desea abrir o cerrar la puerta")
+        option = listen()
+        a = control("puerta",state[5],option)
+    elif('ventilador' in objeto):
+        talk("Desea prender o apagar el ventilador")
+        option = listen()
+        a = control("ventilador",state[6],option)
+    elif('seguridad' in objeto):
+        talk("Desea abrir o cerrar la puerta de seguridad")
+        option = listen()
+        a = control("seguridad",state[7],option)
+    if (a == "ERROR"):
+        talk("Lo siento esta función se encuentra deshabilitada")
+    
+    talk("Desea cambiar algun componente del hogar")
+    des = listen()
+    if(des in "si" or des in "sí"):
+        Control_Hogar()
+    else:
+        return
+    
+
 
 def act_des_fun(state,datos,name):
     cont =0
@@ -335,5 +396,6 @@ def run():
 
 
 if __name__ == "__main__":
+    
     run()
     
